@@ -1245,6 +1245,19 @@ public final class ObjectHandler {
 					//crucible
 				}else if (id == 67051)
 					player.getDialogueManager().startDialogue("Marv", true);
+				else if (id == 28716 || id == 67036) {
+					if (objectDef.containsOption(0, "Renew-points")) {
+							int summonLevel = player.getSkills().getLevelForXp(Skills.SUMMONING);
+							if(player.getSkills().getLevel(Skills.SUMMONING) < summonLevel) {
+								player.lock(3);
+								player.setNextAnimation(new Animation(8502));
+								player.getSkills().set(Skills.SUMMONING, summonLevel);
+								player.getPackets().sendGameMessage(
+										"You have recharged your Summoning points.", true);
+							}else
+								player.getPackets().sendGameMessage("You already have full Summoning points.");
+						}
+				}
 				else {
 					switch (objectDef.name.toLowerCase()) {
 					case "cabbage":
