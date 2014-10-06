@@ -16,9 +16,7 @@ public class SlayerMaster extends Dialogue {
 		Master master = player.getSlayerMaster();
 		if (master == null)
 			player.setSlayerMaster(Master.SPRIA);
-		sendEntityDialogue(SEND_1_TEXT_CHAT,
-				new String[] { NPCDefinitions.getNPCDefinitions(npcId).name,
-						"Good day, How may I help you?" }, IS_NPC, npcId, 9827);
+		sendEntityDialogue(SEND_1_TEXT_CHAT,new String[] { NPCDefinitions.getNPCDefinitions(npcId).name,"Good day, How may I help you?" }, IS_NPC, npcId, 9827);
 	}
 
 	@Override
@@ -28,93 +26,48 @@ public class SlayerMaster extends Dialogue {
 			stage = 2;
 		if (stage == -1) {
 			if (player.getSlayerTask() != null) {
-				sendEntityDialogue(SEND_4_OPTIONS, new String[] {
-						SEND_DEFAULT_OPTIONS_TITLE,
-						"How many monsters do I have left?",
-						"What do you have in your shop?", "Give me a tip.",
-						"Nothing, Nevermind." }, IS_PLAYER, player.getIndex(),
-						9827);
+				sendOptionsDialogue(SEND_DEFAULT_OPTIONS_TITLE,"How many monsters do I have left?","What do you have in your shop?", "Give me a tip.", "Please cancel my task","Nothing, Nevermind.");
 				stage = 0;
 			} else {
-				sendEntityDialogue(SEND_4_OPTIONS, new String[] {
-						SEND_DEFAULT_OPTIONS_TITLE, "Please give me a task.",
-						"What do you have in your shop?", "Give me a tip.",
-						"Nothing, Nevermind." }, IS_PLAYER, player.getIndex(),
-						9827);
+				sendOptionsDialogue(SEND_DEFAULT_OPTIONS_TITLE,"Please give me a task.","What do you have in your shop?", "Give me a tip.","Nothing, Nevermind.");					
 				stage = 1;
 			}
 		} else if (stage == 0 || stage == 1) {
-			if (componentId == 1) {
+			if (componentId == OPTION_1) {
 				SlayerTask task = player.getSlayerTask();
 				if (task != null && stage == 0) {
-					sendEntityDialogue(
-							SEND_1_TEXT_CHAT,
-							new String[] {
-									NPCDefinitions.getNPCDefinitions(npcId).name,
-									"You're current assigned to kill "
-											+ task.getName().toLowerCase()
-											+ " only " + task.getAmount()
-											+ " more to go." }, IS_NPC, npcId,
-							9827);
+					sendNPCDialogue(npcId, 9827, "You're current assigned to kill "+ task.getName().toLowerCase()+ " only " + task.getAmount()+ " more to go.");
 				} else {
 					Slayer.submitRandomTask(player);
-					sendEntityDialogue(
-							SEND_1_TEXT_CHAT,
-							new String[] {
-									NPCDefinitions.getNPCDefinitions(npcId).name,
-									"Your new task is to kill "
-											+ player.getSlayerTask().getName()
-													.toLowerCase() + "." },
-							IS_NPC, npcId, 9827);
+					sendNPCDialogue(npcId, 9827, "Your new task is to kill "+ player.getSlayerTask().getName().toLowerCase() + ".");
 				}
 				stage = -1;
-			} else if (componentId == 2) {
-				sendEntityDialogue(
-						SEND_1_TEXT_CHAT,
-						new String[] {
-								NPCDefinitions.getNPCDefinitions(npcId).name,
-								"I have multiple items for sale." }, IS_NPC,
-						npcId, 9827);
+			} else if (componentId == OPTION_2) {
+				sendNPCDialogue(npcId, 9827, "I have multiple items for sale.");					
 				ShopsHandler.openShop(player, 29);
 				stage = -1;
-			} else if (componentId == 3) {
-				sendEntityDialogue(
-						SEND_1_TEXT_CHAT,
-						new String[] {
-								NPCDefinitions.getNPCDefinitions(npcId).name,
-								"I currently dont have any tips for you now." },
-						IS_NPC, npcId, 9827);
+			} else if (componentId == OPTION_3) {
+				sendNPCDialogue(npcId, 9827, "I currently dont have any tips for you now.");
 				stage = -1;
+			} else if (componentId == OPTION_4) {
+				player.setSlayerTask(null);
+				sendNPCDialogue(npcId, 9827, "Your task has been cleared");
 			} else {
 				end();
 			}
 		} else if (stage == 2) {
-			sendEntityDialogue(SEND_3_OPTIONS, new String[] {
-					SEND_DEFAULT_OPTIONS_TITLE, "Can you become my master?",
-					"What do you have in your shop?", "Nothing, Nevermind." },
-					IS_PLAYER, player.getIndex(), 9827);
+			sendOptionsDialogue(SEND_DEFAULT_OPTIONS_TITLE,"Can you become my master?", "What do you have in your shop?", "Nothing, Nevermind.");
 			stage = 3;
 			if (stage == 3) {
-				if (componentId == 1) {
+				if (componentId == OPTION_1) {
 					if (player.getSlayerTask() != null) {
-						sendEntityDialogue(
-								SEND_1_TEXT_CHAT,
-								new String[] {
-										NPCDefinitions.getNPCDefinitions(npcId).name,
-										"I cannot teach you until your slayer task is complete. Come back later." },
-								IS_NPC, npcId, 9827);
+						sendNPCDialogue(npcId, 9827, "I cannot teach you until your slayer task is complete. Come back later.");
 						return;
 					}
-					sendEntityDialogue(SEND_1_TEXT_CHAT, new String[] {
-							NPCDefinitions.getNPCDefinitions(npcId).name,
-							"You are now under my wings." }, IS_NPC, npcId,
-							9827);
+					sendNPCDialogue(npcId, 9827, "You are now under my wings.");
 					player.setSlayerMaster(Master.forId(npcId));
-				} else if (componentId == 2) {
-					sendEntityDialogue(SEND_1_TEXT_CHAT, new String[] {
-							NPCDefinitions.getNPCDefinitions(npcId).name,
-							"I have multiple items for sale." }, IS_NPC, npcId,
-							9827);
+				} else if (componentId == OPTION_2) {
+					sendNPCDialogue(npcId, 9827, "I have multiple items for sale.");
 					ShopsHandler.openShop(player, 29);
 				} else {
 					end();

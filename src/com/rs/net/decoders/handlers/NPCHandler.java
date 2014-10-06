@@ -17,6 +17,7 @@ import com.rs.game.player.actions.Fishing.FishingSpots;
 import com.rs.game.player.actions.mining.LivingMineralMining;
 import com.rs.game.player.actions.mining.MiningBase;
 import com.rs.game.player.actions.runecrafting.SiphonActionCreatures;
+import com.rs.game.player.actions.Slayer;
 import com.rs.game.player.actions.thieving.PickPocketAction;
 import com.rs.game.player.actions.thieving.PickPocketableNPC;
 import com.rs.game.player.content.PlayerLook;
@@ -67,7 +68,7 @@ public class NPCHandler {
 			return;
 		player.stopAll(false);
 		if(forceRun)
-			player.setRun(forceRun);
+			player.setRun(forceRun);		
 		if (npc.getDefinitions().name.contains("Banker")
 				|| npc.getDefinitions().name.contains("banker")) {
 			player.faceEntity(npc);
@@ -95,7 +96,10 @@ public class NPCHandler {
 					return;
 				}
 				npc.faceEntity(player);
-				if (npc.getId() == 3709)
+				if (Slayer.Master.forId(npc.getId()) != null) {
+					player.getDialogueManager().startDialogue("SlayerMaster", npc.getId());
+				}
+				else if (npc.getId() == 3709)
 					player.getDialogueManager().startDialogue("MrEx",
 							npc.getId());
 				else if (npc.getId() == 5532)

@@ -309,7 +309,7 @@ public class Slayer {
 			player.setSlayerMaster(Master.SPRIA);
 			master = player.getSlayerMaster();
 		}
-		int index = Utils.getRandom(master.getTasks().length);
+		int index = Utils.getRandom(master.getTasks().length-1);
 		int amount = Utils.random(master.getRange()[0], master.getRange()[1]);
 		task = new SlayerTask(master, index, amount);
 		if (player.getSlayerTask() == null)
