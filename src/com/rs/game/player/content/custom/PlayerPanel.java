@@ -4,10 +4,7 @@ import com.rs.game.player.Player;
 import com.rs.game.player.content.Magic;
 import com.rs.game.WorldTile;
 
-/**
-*
-* @author CNova
-*/
+
 public class PlayerPanel {
 
 	public static void handleButtons(Player player, int componentId) {

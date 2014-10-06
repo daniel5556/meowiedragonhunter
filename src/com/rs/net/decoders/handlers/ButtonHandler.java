@@ -495,7 +495,7 @@ public class ButtonHandler {
 				player.setPrivateChatSetup(componentId - 48);
 			else if (componentId >= 72 && componentId <= 91)
 				player.setFriendChatSetup(componentId - 72);
-		} else if (interfaceId == 506) { //Custom interface
+		} else if (interfaceId == 506) { //Custom interface - PlayerPanel
 			PlayerPanel.handleButtons(player, componentId);
 		} else if (interfaceId == 271) {
 			WorldTasksManager.schedule(new WorldTask() {

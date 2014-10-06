@@ -93,7 +93,6 @@ public class InterfaceManager {
 	
 	public void sendFullScreenInterfaces() {
 		player.getPackets().sendWindowsPane(746, 0);
-		sendPlayerPanel();
 		sendTab(21, 752);
 		sendTab(22, 751);
 		sendTab(15, 745);
@@ -106,7 +105,8 @@ public class InterfaceManager {
 		sendCombatStyles();
 		sendTaskSystem();
 		sendSkills();
-		sendTab(114, 190);
+		sendPlayerPanel();
+		//sendTab(114, 190); Quest Tab
 		sendInventory();
 		sendEquipment();
 		sendPrayerBook();
@@ -123,7 +123,6 @@ public class InterfaceManager {
 	
 	public void sendFixedInterfaces() {
 		player.getPackets().sendWindowsPane(548, 0);
-		sendPlayerPanel();
 		sendTab(161, 752);
 		sendTab(37, 751);
 		sendTab(23, 745);
@@ -137,7 +136,8 @@ public class InterfaceManager {
 		sendPrayerBook();
 		sendEquipment();
 		sendInventory();
-		sendTab(174, 190);//quest 
+		sendPlayerPanel();
+		//sendTab(174, 190); quest tab
 		sendTab(181, 1109);// 551 ignore now friendchat
 		sendTab(182, 1110);// 589 old clan chat now new clan chat
 		sendTab(180, 550);// friend list
@@ -397,8 +397,10 @@ public class InterfaceManager {
 	}
 	
 	public void sendPlayerPanel() {
-		sendTab(resizableScreen ? 119 : 179, 1139);
-		player.getPackets().sendGlobalConfig(823, 1);
+		sendTab(resizableScreen ? 114 : 174, 506);
+		//Experimental Squeal
+		//sendTab(resizableScreen ? 119 : 179, 1139);
+		//player.getPackets().sendGlobalConfig(823, 1);
 		player.getPackets().sendIComponentText(506, 0, "<col=ffff00>Teleports");
 		player.getPackets().sendIComponentText(506, 2, "<col=0088ff>Loyalty Points:");
 		player.getPackets().sendIComponentText(506, 4, "<col=0088ff>Skilling");
