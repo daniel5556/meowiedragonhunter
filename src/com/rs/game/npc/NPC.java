@@ -192,6 +192,12 @@ public class NPC extends Entity implements Serializable {
 			setName("<col=FF66FF><shad=IM88A>Combat Shop");
 			setRandomWalk(false); 
 		}
+		
+		//Bob - Skilling Shop
+		if(id == 519) {
+			setName("<col=FF66FF><shad=IM88A>Skilling Shop");
+			setRandomWalk(false); 
+		}
 		if (!combat.process()) { // if not under combat		
 		if (!isForceWalking()) {// combat still processed for attack delay
 			// go down
