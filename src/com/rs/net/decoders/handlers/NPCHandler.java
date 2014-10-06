@@ -315,7 +315,10 @@ public class NPCHandler {
 					PlayerLook.openHairdresserSalon(player);
 				else if (npc.getId() == 541) //Zeke - Combat Shop
 					player.getDialogueManager().startDialogue("Zeke", npc.getId(), 0);
-			
+				else if (npc.getId() == 519) //bob - Skilling Shop
+					player.getDialogueManager().startDialogue("Bob", npc.getId(), 0);
+				
+				
 				else if (npc instanceof Pet) {
 					if (npc != player.getPet()) {
 						player.getPackets().sendGameMessage("This isn't your pet!");
