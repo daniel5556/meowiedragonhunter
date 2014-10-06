@@ -32,6 +32,10 @@ public class Bob extends Dialogue {
 			case OPTION_4:
 				ShopsHandler.openShop(player, 42);
 				end();
+				break;
+			case OPTION_5:
+				ShopsHandler.openShop(player, 43);
+				end();
 				break;			
 			default:
 				end();
