@@ -82,6 +82,7 @@ public class Player extends Entity {
 
 	//points
 	public int credits = 0;
+	public int pkpoints = 0;
 
 	//bone dupe fix
 	private boolean burying;

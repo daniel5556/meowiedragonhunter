@@ -401,14 +401,14 @@ public class InterfaceManager {
 		//Experimental Squeal
 		//sendTab(resizableScreen ? 119 : 179, 1139);
 		//player.getPackets().sendGlobalConfig(823, 1);
-		player.getPackets().sendIComponentText(506, 0, "<col=ffff00>Teleports");
-		player.getPackets().sendIComponentText(506, 2, "<col=0088ff>Loyalty Points:");
-		player.getPackets().sendIComponentText(506, 4, "<col=0088ff>Skilling");
-		player.getPackets().sendIComponentText(506, 6, "<col=0088ff>Bossing");
-		player.getPackets().sendIComponentText(506, 8, "<col=0088ff>Minigames");
-		player.getPackets().sendIComponentText(506, 10, "<col=0088ff>PvP");
-		player.getPackets().sendIComponentText(506, 12, "<col=0088ff>Skill Shops");
-		player.getPackets().sendIComponentText(506, 14, "<col=0088ff>Coming Soon...");
+		player.getPackets().sendIComponentText(506, 0, "<col=ffff00>Player Menu");
+		player.getPackets().sendIComponentText(506, 2, "<col=0088ff>Change Password");
+		player.getPackets().sendIComponentText(506, 4, "<col=0088ff>Coming Soon...");
+		player.getPackets().sendIComponentText(506, 6, "<col=0088ff>Coming Soon...");
+		player.getPackets().sendIComponentText(506, 8, "<col=0088ff>Coming Soon...");
+		player.getPackets().sendIComponentText(506, 10, "<col=0088ff>Coming Soon...");
+		player.getPackets().sendIComponentText(506, 12, "<col=0088ff>Credits: " + player.credits);
+		player.getPackets().sendIComponentText(506, 14, "<col=0088ff>Pk Points: " + player.pkpoints);
 	}
 
 	/*

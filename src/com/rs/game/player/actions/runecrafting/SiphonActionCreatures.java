@@ -245,8 +245,8 @@ public class SiphonActionCreatures extends Action {
 				player.setNextAnimation(new Animation(16599));
 				creature.setRespawnTask();
 				player.getInventory().addItem(24227, 50);
-				player.credits += 2;
-					player.getPackets().sendGameMessage("You obtain 2 credits. You now have: "+ player.credits +" credits!");
+				player.credits += 1;
+					player.getPackets().sendGameMessage("You obtain 1 credit. You now have: "+ player.credits +" credits!");
 				stop();
 			}
 		}, 2);
