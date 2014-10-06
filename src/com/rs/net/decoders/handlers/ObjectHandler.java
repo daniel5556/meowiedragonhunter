@@ -37,6 +37,7 @@ import com.rs.game.player.actions.mining.Mining.RockDefinitions;
 import com.rs.game.player.actions.mining.MiningBase;
 import com.rs.game.player.actions.runecrafting.SihponActionNodes;
 import com.rs.game.player.actions.thieving.Thieving;
+import com.rs.game.player.content.farming.FarmingSystem;
 import com.rs.game.player.content.Hunter;
 import com.rs.game.player.content.Magic;
 import com.rs.game.player.content.PartyRoom;
@@ -152,6 +153,11 @@ public final class ObjectHandler {
 			public void run() {
 				player.stopAll();
 				player.faceObject(object);
+				for (int i = 0; i < FarmingSystem.farmingPatches.length; i++) {
+					if (object.getId() == FarmingSystem.farmingPatches[i]) {
+						FarmingSystem.executeAction(player, object);
+					}
+				}
 				if (!player.getControlerManager().processObjectClick1(object))
 					return;
 				if (CastleWars.handleObjects(player, id))
@@ -1204,6 +1210,11 @@ public final class ObjectHandler {
 			public void run() {
 				player.stopAll();
 				player.faceObject(object);
+				for (int i = 0; i < FarmingSystem.farmingPatches.length; i++) {
+					if (object.getId() == FarmingSystem.farmingPatches[i]) {
+						FarmingSystem.inspectPatch(player, object);
+					}
+				}
 				if (!player.getControlerManager().processObjectClick2(object))
 					return;
 				else if (object.getDefinitions().name
@@ -1695,6 +1706,11 @@ public final class ObjectHandler {
 			@Override
 			public void run() {
 				player.faceObject(object);
+				for (int i = 0; i < FarmingSystem.farmingPatches.length; i++) {
+					if (object.getId() == FarmingSystem.farmingPatches[i]) {
+						FarmingSystem.handleSeeds(player, itemId, object);
+					}
+				}
 				if (itemId == 1438 && object.getId() == 2452) {
 					Runecrafting.enterAirAltar(player);
 				} else if (itemId == 1440 && object.getId() == 2455) {

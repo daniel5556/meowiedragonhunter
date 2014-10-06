@@ -35,6 +35,8 @@ import com.rs.game.npc.pet.Pet;
 import com.rs.game.player.actions.PlayerCombat;
 import com.rs.game.player.actions.Slayer.Master;
 import com.rs.game.player.actions.Slayer.SlayerTask;
+import com.rs.game.player.content.farming.PatchStatus;
+import com.rs.game.player.content.farming.FarmingSystem;
 import com.rs.game.player.content.FriendChatsManager;
 import com.rs.game.player.content.Notes;
 import com.rs.game.player.content.Pots;
@@ -255,6 +257,12 @@ public class Player extends Entity {
 	private boolean isGraphicDesigner;
 	
 	private boolean isForumModerator;
+	
+	/**
+	 * Farming
+	 */
+	public List<PatchStatus> farmingPatch;
+	public List<WorldObject> rakedPatch;
 
 	// creates Player and saved classes
 	public Player(String password) {
@@ -682,23 +690,25 @@ public class Player extends Entity {
 
 		//give starter pack and set old graphics
 		if (starter == false) {
-		switchItemsLook();
-		getInventory().addItem(995, 10000000);
-		getInventory().addItem(1323, 1);
-		getInventory().addItem(1333, 1);
-		getInventory().addItem(4587, 1);
-		getInventory().addItem(1153, 1);
-		getInventory().addItem(1712, 1);
-		getInventory().addItem(1115, 1);
-		getInventory().addItem(1067, 1);
-		getInventory().addItem(841, 1);
-		getInventory().addItem(884, 2000);
-		getInventory().addItem(26778, 1);
-		getPackets().sendGameMessage("Enjoy your starter pack!");
-		starter = true;
-		FriendChatsManager.joinChat("Help", this);
+			switchItemsLook();
+			getInventory().addItem(995, 10000000);
+			getInventory().addItem(1323, 1);
+			getInventory().addItem(1333, 1);
+			getInventory().addItem(4587, 1);
+			getInventory().addItem(1153, 1);
+			getInventory().addItem(1712, 1);
+			getInventory().addItem(1115, 1);
+			getInventory().addItem(1067, 1);
+			getInventory().addItem(841, 1);
+			getInventory().addItem(884, 2000);
+			getInventory().addItem(26778, 1);
+			getPackets().sendGameMessage("Enjoy your starter pack!");
+			starter = true;
+			FriendChatsManager.joinChat("Help", this);
+			farmingPatch = new ArrayList<PatchStatus>();
+			rakedPatch = new ArrayList<WorldObject>();
 		}
-		
+		FarmingSystem.sendPatchOnLogin(this);		
 		if (extremeDonator || extremeDonatorTill != 0) {
 			if (!extremeDonator && extremeDonatorTill < Utils.currentTimeMillis()) {
 				getPackets().sendGameMessage("Your extreme donator rank expired.");
