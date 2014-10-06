@@ -271,8 +271,6 @@ public class NPCHandler {
 					player.getBank().openBank();
 				else if (npc.getId() == 528 || npc.getId() == 529)
 					ShopsHandler.openShop(player, 1);
-				else if (npc.getId() == 519)
-					ShopsHandler.openShop(player, 2);
 				else if (npc.getId() == 520 || npc.getId() == 521)
 					ShopsHandler.openShop(player, 4);
 				else if (npc.getId() == 538)
