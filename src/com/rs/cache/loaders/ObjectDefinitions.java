@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.rs.Settings;
 import com.rs.cache.Cache;
 import com.rs.game.player.content.dungeoneering.DungeonUtils;
 import com.rs.io.InputStream;
@@ -661,8 +662,8 @@ public class ObjectDefinitions {
 			def.id = id;
 			byte[] data = Cache.STORE.getIndexes()[16].getFile(
 					getArchiveId(id), id & 0xff);
-			if (data == null)  {
-					//System.out.println("Failed loading Object " + id + ".");
+			if (data == null && Settings.DEBUG)  {
+					System.out.println("Failed loading Object " + id + ".");
 			} else
 				def.readValueLoop(new InputStream(data));
 			def.method3287();

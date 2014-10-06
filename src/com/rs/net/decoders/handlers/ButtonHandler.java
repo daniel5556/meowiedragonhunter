@@ -347,16 +347,16 @@ public class ButtonHandler {
 		} else if (interfaceId == 672) {
 			if (componentId == 16) {
 				if (packetId == WorldPacketsDecoder.ACTION_BUTTON1_PACKET)
-					Summoning.sendCreatePouch(player, slotId2, 1);
+					Summoning.createPouch(player, slotId2, 1);
 				else if (packetId == WorldPacketsDecoder.ACTION_BUTTON2_PACKET)
-					Summoning.sendCreatePouch(player, slotId2, 5);
+					Summoning.createPouch(player, slotId2, 5);
 				else if (packetId == WorldPacketsDecoder.ACTION_BUTTON3_PACKET)
-					Summoning.sendCreatePouch(player, slotId2, 10);
+					Summoning.createPouch(player, slotId2, 10);
 				else if (packetId == WorldPacketsDecoder.ACTION_BUTTON4_PACKET)
-					Summoning.sendCreatePouch(player, slotId2,
+					Summoning.createPouch(player, slotId2,
 							Integer.MAX_VALUE);
 				else if (packetId == WorldPacketsDecoder.ACTION_BUTTON5_PACKET)
-					Summoning.sendCreatePouch(player, slotId2, 28);// x
+					Summoning.createPouch(player, slotId2, 28);// x
 				else if (packetId == WorldPacketsDecoder.ACTION_BUTTON6_PACKET) {
 					player.getPackets().sendGameMessage(
 							"You currently need "

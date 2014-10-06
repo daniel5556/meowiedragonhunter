@@ -1,6 +1,7 @@
 package com.rs.game.player.content.farming;
 
 import java.util.Iterator;
+import java.io.Serializable;
 
 import com.rs.cache.loaders.ObjectDefinitions;
 import com.rs.game.Animation;
@@ -12,7 +13,9 @@ import com.rs.game.tasks.WorldTask;
 import com.rs.game.tasks.WorldTasksManager;
 import com.rs.Settings;
 
-public class FarmingSystem {
+public class FarmingSystem implements Serializable {
+	
+	private static final long serialVersionUID = 4641462661859309514L;
 	
 	/**
 	 * @author Jake | Santa Hat @Rune-Server
@@ -24,15 +27,21 @@ public class FarmingSystem {
 	 */
 	public static int[] farmingPatches = { 8552, 8553, 7848, 8151, 8550, 8551, 7847, 8150 };
 	
+	private Player player;
 	/**
 	 * Handles the seeds on patch
 	 */
-	public static void handleSeeds(Player player, int seedId, WorldObject object) {
+	
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
+	
+	public void handleSeeds(int seedId, WorldObject object) {
 		/*if (!canPlantSeeds(player, object)) {
 			player.getPackets().sendGameMessage("You must clear the weeds before you may plant some seeds here.");
 			return;
 		}*/
-		for (PatchStatus patch : player.farmingPatch) {
+		for (PatchStatus patch : player.getFarmingPatches()) {
 			if (patch.getObjectId() == object.getId()) {
 				player.getPackets().sendGameMessage("There is already something growing here.");
 				return;
@@ -44,18 +53,19 @@ public class FarmingSystem {
 					player.getPackets().sendGameMessage("You need at least "+seed.getLevel()+" Farming in order to plant this.");
 					return;
 				}
+				ObjectDefinitions defs = ObjectDefinitions.getObjectDefinitions(seedId);
 				if (!player.getInventory().containsItem(seed.getItem().getId(), seed.getItem().getAmount())) {
-					player.getPackets().sendGameMessage("You need at least "+seed.getItem().getAmount()+" "+ObjectDefinitions.getObjectDefinitions(seedId).name+"'s.");
+					player.getPackets().sendGameMessage("You need at least "+seed.getItem().getAmount()+" "+defs.name+"'s.");
 					return;
-				}
+				}				
 				for (int i = 0; i < seed.getSuitablePatch().length; i++) {
 					if (seed.getSuitablePatch()[i] == object.getId()) {
-						player.getPackets().sendGameMessage("You plant some "+ObjectDefinitions.getObjectDefinitions(seedId).name+"'s.");
+						player.getPackets().sendGameMessage("You plant some "+defs.name+"'s.");
 						player.getSkills().addXp(Skills.FARMING, seed.getPlantXP());
 						player.getInventory().deleteItem(seed.getItem());
 						player.setNextAnimation(new Animation(2291));
-						player.farmingPatch.add(new PatchStatus(object.getId(), object.getDefinitions().configFileId, seed.getConfigValues()[0], seed.getConfigValues()[4], "Some "+ObjectDefinitions.getObjectDefinitions(seedId).name+"'s have been planted here."));
-						startGrowth(player, object, seed.getTime() / 2);
+						player.getFarmingPatches().add(new PatchStatus(object.getId(), object.getDefinitions().configFileId, seed.getConfigValues()[0], seed.getConfigValues()[4], "Some "+defs.name+"'s have been planted here."));
+						startGrowth(object, seed.getTime() / 2);
 					}
 				}
 			}
@@ -65,8 +75,8 @@ public class FarmingSystem {
 	/**
 	 * Is the Patch Raked? Can the Player plant seeds?
 	 */
-	private static boolean canPlantSeeds(Player player, WorldObject object) {		
-		for (WorldObject o : player.rakedPatch) {			
+	private boolean canPlantSeeds(WorldObject object) {		
+		for (WorldObject o : player.getRakedPatches()) {			
 			if (object.getId() == o.getId()) 
 				return true;
 		}
@@ -78,15 +88,15 @@ public class FarmingSystem {
 	 * Starts the growth
 	 * 5 Stages of Growth
 	 */
-	private static void startGrowth(final Player player, final WorldObject object, int time) {
+	private void startGrowth(final WorldObject object, int time) {
 		WorldTasksManager.schedule(new WorldTask() {
 			@Override
 			public void run() {
-				if (player.farmingPatch.size() == 0) { stop();
+				if (player.getFarmingPatches().size() == 0) { stop();
 					return;	
 				}
 				PatchStatus status = null;
-				for (PatchStatus patch : player.farmingPatch) {
+				for (PatchStatus patch : player.getFarmingPatches()) {
 					if (patch.getConfigId() == object.getDefinitions().configFileId) {
 						status = patch;
 					}
@@ -99,8 +109,8 @@ public class FarmingSystem {
 					player.getPackets().sendGameMessage("<col=ff0000>[Farming] Your crops have fully grown.");
 					stop();
 				} else {
-					player.farmingPatch.add(new PatchStatus(object.getId(), object.getDefinitions().configFileId, status.getConfigValue() + 1, status.getMaxConfigValue(), status.getInspectText()));
-					player.farmingPatch.remove(status);
+					player.getFarmingPatches().add(new PatchStatus(object.getId(), object.getDefinitions().configFileId, status.getConfigValue() + 1, status.getMaxConfigValue(), status.getInspectText()));
+					player.getFarmingPatches().remove(status);
 					player.getPackets().sendConfigByFile(status.getConfigId(), status.getConfigValue() + 1);
 				}
 			}
@@ -110,26 +120,26 @@ public class FarmingSystem {
 	/**
 	 * Should the Player Rake or Harvest?
 	 */
-	public static void executeAction(Player player, WorldObject object) {
-		if (canHarvest(player, object)) 
-			harvestCrops(player, object);
+	public void executeAction(WorldObject object) {
+		if (canHarvest(object)) 
+			harvestCrops(object);
 		else 
-			rake(player, object);
+			rake(object);
 	}
 	
 	/**
 	 * Harvest's The Crops
 	 */
-	private static void harvestCrops(Player player, WorldObject object) {
-		if (canHarvest(player, object)) {
+	private void harvestCrops(WorldObject object) {
+		if (canHarvest(object)) {
 			player.getPackets().sendConfigByFile(object.getDefinitions().configFileId, 0);
-			sendItems(player, object);
-			for (Iterator<PatchStatus> patches = player.farmingPatch.iterator(); patches.hasNext();) {
+			sendItems(object);
+			for (Iterator<PatchStatus> patches = player.getFarmingPatches().iterator(); patches.hasNext();) {
 				PatchStatus patch = patches.next();
 				if (patch.getConfigId() == object.getDefinitions().configFileId) 
 					patches.remove(); //Removes the Crops
 			}
-			for (Iterator<WorldObject> rakedPatches = player.rakedPatch.iterator(); rakedPatches.hasNext();) {
+			for (Iterator<WorldObject> rakedPatches = player.getRakedPatches().iterator(); rakedPatches.hasNext();) {
 				WorldObject rakedPatch = rakedPatches.next();
 				if (rakedPatch.getId() == object.getId()) 
 					rakedPatches.remove(); //Removes the Raked Patch
@@ -140,26 +150,26 @@ public class FarmingSystem {
 	/**
 	 * Sends the Farming crops to the Players Inventory
 	 */
-	private static void sendItems(Player player, WorldObject object) {
-		for (PatchStatus patch : player.farmingPatch) {
+	private void sendItems(WorldObject object) {
+		for (PatchStatus patch : player.getFarmingPatches()) {
 			if (patch.getObjectId() == object.getId()) {
 				for (Seeds.Seed seed : Seed.values()) {
 					if (seed.getConfigValues()[4] == patch.getMaxConfigValue()) {
+						ObjectDefinitions defs = ObjectDefinitions.getObjectDefinitions(seed.getProduce().getId());
 						player.setNextAnimation(new Animation(2286));
 						player.getInventory().addItem(seed.getProduce());
 						player.getSkills().addXp(Skills.FARMING, seed.getHarvestXP());
-						player.getPackets().sendGameMessage("You harvest the "+ObjectDefinitions.getObjectDefinitions(seed.getProduce().getId()).name+"'s.");
+						player.getPackets().sendGameMessage("You harvest the "+defs.name+"'s.");
 					}
 				}
 			}
 		}
 	}
-	
 	/**
 	 * Can the Player Harvest?
 	 */
-	public static boolean canHarvest(Player player, WorldObject object) {
-		for (PatchStatus patch : player.farmingPatch) {
+	public boolean canHarvest(WorldObject object) {
+		for (PatchStatus patch : player.getFarmingPatches()) {
 			if (patch.getConfigId() == object.getDefinitions().configFileId) {
 				if ((patch.getConfigValue() + 1) == patch.getMaxConfigValue()) {
 					return true;
@@ -172,31 +182,31 @@ public class FarmingSystem {
 	/**
 	 * Sends the Configs Upon Login
 	 */
-	public static void sendPatchOnLogin(Player player) {
-		player.rakedPatch.clear();
-		for (PatchStatus patch : player.farmingPatch) {
-			continueGrowth(player);
+	public void sendPatchOnLogin() {
+		player.getRakedPatches().clear();
+		for (PatchStatus patch : player.getFarmingPatches()) {
+			continueGrowth();
 		}
 	}
 	/**
 	 * Continues the Growth of the crops when the player logs back in.
 	 */
-	public static void continueGrowth(final Player player) {
+	public void continueGrowth() {
 		WorldTasksManager.schedule(new WorldTask() {
 			@Override
 			public void run() {
-				if (player.farmingPatch.size() == 0) { stop();
+				if (player.getFarmingPatches().size() == 0) { stop();
 					return;	
 				}
-				for (PatchStatus patch : player.farmingPatch) {
+				for (PatchStatus patch : player.getFarmingPatches()) {
 					if ((patch.getConfigValue() + 1) == patch.getMaxConfigValue()) {
 						player.getPackets().sendConfigByFile(patch.getConfigId(), patch.getMaxConfigValue());
 						player.getPackets().sendGameMessage("[Farming] Your crops have fully grown.");
 						stop();
 					} else {
-						player.farmingPatch.add(new PatchStatus(patch.getObjectId(), patch.getConfigId(), patch.getConfigValue() + 1, patch.getMaxConfigValue(), patch.getInspectText()));
+						player.getFarmingPatches().add(new PatchStatus(patch.getObjectId(), patch.getConfigId(), patch.getConfigValue() + 1, patch.getMaxConfigValue(), patch.getInspectText()));
 						player.getPackets().sendConfigByFile(patch.getConfigId(), patch.getConfigValue() + 1);
-						player.farmingPatch.remove(patch);
+						player.getFarmingPatches().remove(patch);
 					}	
 				}
 			}
@@ -206,7 +216,7 @@ public class FarmingSystem {
 	/**
 	 * Rakes the patch
 	 */
-	private static void rake(final Player player, final WorldObject object) {
+	private void rake(final WorldObject object) {
 		if (!player.getInventory().containsItem(5341, 1)) {
 			player.getPackets().sendGameMessage("You'll need a rake to get rid of the weeds.");
 			return;
@@ -224,7 +234,7 @@ public class FarmingSystem {
 					player.getInventory().addItem(6055, 1);
 					player.getSkills().addXp(Skills.FARMING, 1);
 				} else if (loop == 6){
-					player.rakedPatch.add(object);
+					player.getRakedPatches().add(object);
 					player.getPackets().sendGameMessage("You successfully clear all the weeds.");
 				} else if (loop >= 7) {
 					player.unlock();
@@ -239,12 +249,12 @@ public class FarmingSystem {
 	/**
 	 * Right Click Patch - Inspect Option - Call this in ObjectHandler - Option2
 	 */
-	public static void inspectPatch(Player player, WorldObject object) {
-		if (player.farmingPatch.size() == 0) {
+	public void inspectPatch(WorldObject object) {
+		if (player.getFarmingPatches().size() == 0) {
 			player.getDialogueManager().startDialogue("SimpleMessage", "There is currently nothing growing here.");
 			return;
 		}
-		for (PatchStatus patch : player.farmingPatch) {
+		for (PatchStatus patch : player.getFarmingPatches()) {
 			if (object.getId() == patch.getObjectId()) {
 				player.getDialogueManager().startDialogue("SimpleMessage", ""+patch.getInspectText());
 			} else {

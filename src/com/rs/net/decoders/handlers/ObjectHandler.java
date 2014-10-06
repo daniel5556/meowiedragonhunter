@@ -155,7 +155,7 @@ public final class ObjectHandler {
 				player.faceObject(object);
 				for (int i = 0; i < FarmingSystem.farmingPatches.length; i++) {
 					if (object.getId() == FarmingSystem.farmingPatches[i]) {
-						FarmingSystem.executeAction(player, object);
+						player.getFarmingSystem().executeAction(object);
 					}
 				}
 				if (!player.getControlerManager().processObjectClick1(object))
@@ -823,7 +823,7 @@ public final class ObjectHandler {
 				else if (id == 67052)
 					Crucible.enterCrucibleEntrance(player);
 				else if (id == 28716 || id == 67036) {
-					Summoning.infusePouches(player);
+					Summoning.sendInterface(player);
 				}
 				else {
 					switch (objectDef.name.toLowerCase()) {
@@ -1212,7 +1212,7 @@ public final class ObjectHandler {
 				player.faceObject(object);
 				for (int i = 0; i < FarmingSystem.farmingPatches.length; i++) {
 					if (object.getId() == FarmingSystem.farmingPatches[i]) {
-						FarmingSystem.inspectPatch(player, object);
+						player.getFarmingSystem().inspectPatch(object);
 					}
 				}
 				if (!player.getControlerManager().processObjectClick2(object))
@@ -1708,7 +1708,7 @@ public final class ObjectHandler {
 				player.faceObject(object);
 				for (int i = 0; i < FarmingSystem.farmingPatches.length; i++) {
 					if (object.getId() == FarmingSystem.farmingPatches[i]) {
-						FarmingSystem.handleSeeds(player, itemId, object);
+						player.getFarmingSystem().handleSeeds(itemId, object);
 					}
 				}
 				if (itemId == 1438 && object.getId() == 2452) {

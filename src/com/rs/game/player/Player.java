@@ -261,9 +261,10 @@ public class Player extends Entity {
 	/**
 	 * Farming
 	 */
-	public List<PatchStatus> farmingPatch;
-	public List<WorldObject> rakedPatch;
-
+	private List<PatchStatus> farmingPatch;
+	private List<WorldObject> rakedPatch;
+	private FarmingSystem farmingSystem;
+	
 	// creates Player and saved classes
 	public Player(String password) {
 		super(/*Settings.HOSTED ? */Settings.START_PLAYER_LOCATION/* : new WorldTile(3095, 3107, 0)*/);
@@ -281,6 +282,7 @@ public class Player extends Entity {
 		emotesManager = new EmotesManager();
 		friendsIgnores = new FriendsIgnores();
 		dominionTower = new DominionTower();
+		farmingSystem = new FarmingSystem();		
 		charges = new ChargesManager();
 		auraManager = new AuraManager();
 		questManager = new QuestManager();
@@ -294,7 +296,7 @@ public class Player extends Entity {
 		ownedObjectsManagerKeys = new LinkedList<String>();
 		passwordList = new ArrayList<String>();
 		ipList = new ArrayList<String>();
-		creationDate = Utils.currentTimeMillis();
+		creationDate = Utils.currentTimeMillis();				
 	}
 
 	public void init(Session session, String username, int displayMode,
@@ -338,6 +340,7 @@ public class Player extends Entity {
 		musicsManager.setPlayer(this);
 		emotesManager.setPlayer(this);
 		friendsIgnores.setPlayer(this);
+		farmingSystem.setPlayer(this);
 		dominionTower.setPlayer(this);
 		auraManager.setPlayer(this);
 		charges.setPlayer(this);
@@ -708,7 +711,7 @@ public class Player extends Entity {
 			farmingPatch = new ArrayList<PatchStatus>();
 			rakedPatch = new ArrayList<WorldObject>();
 		}
-		FarmingSystem.sendPatchOnLogin(this);		
+		getFarmingSystem().sendPatchOnLogin();		
 		if (extremeDonator || extremeDonatorTill != 0) {
 			if (!extremeDonator && extremeDonatorTill < Utils.currentTimeMillis()) {
 				getPackets().sendGameMessage("Your extreme donator rank expired.");
@@ -3166,5 +3169,17 @@ public class Player extends Entity {
 
 	public void setBurying(boolean burying) {
 		this.burying = burying;
+	}
+	
+	public List<PatchStatus> getFarmingPatches() {
+		return farmingPatch;
+	}
+	
+	public List<WorldObject> getRakedPatches() {
+		return rakedPatch;
+	}
+	
+	public FarmingSystem getFarmingSystem() {
+		return farmingSystem;
 	}
 }
