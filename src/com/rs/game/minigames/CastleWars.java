@@ -167,19 +167,19 @@ public final class CastleWars {
 							if (winner == -2) {
 								player.getPackets()
 								.sendGameMessage("You draw.");
-								player.credits += 15;
-									player.getPackets().sendGameMessage("You have earned 15 bonus credits for your effort!");
+								player.credits += 25;
+									player.getPackets().sendGameMessage("You have earned 25 bonus credits for your effort!");
 									player.getPackets().sendGameMessage("You now have "+ player.credits +" credits");
 							} else if (winner == i) {
 								player.getPackets().sendGameMessage("You won.");
-								player.credits += 30;
-									player.getPackets().sendGameMessage("You have earned 30 bonus credits for your victory!");
+								player.credits += 50;
+									player.getPackets().sendGameMessage("You have earned 50 bonus credits for your victory!");
 									player.getPackets().sendGameMessage("You now have "+ player.credits +" credits");
 							} else
 								player.getPackets()
 								.sendGameMessage("You lost.");
-								player.credits += 70;
-									player.getPackets().sendGameMessage("You have earned 70 credits for participation!");
+								player.credits += 150;
+									player.getPackets().sendGameMessage("You have earned 150 credits for participation!");
 									player.getPackets().sendGameMessage("You now have "+ player.credits +" credits");
 						}
 					}
