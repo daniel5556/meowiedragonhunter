@@ -176,7 +176,8 @@ public class NPCHandler {
 					player.getDialogueManager().startDialogue("Zeke", npc.getId(), 0);
 				else if (npc.getId() == 13959) 
 					player.getDialogueManager().startDialogue("Raptor", npc.getId());
-				
+				else if (npc.getId() == 519) 
+					player.getDialogueManager().startDialogue("Bob", npc.getId(), 0);
 				else if (npc instanceof Pet) {
 					Pet pet = (Pet) npc;
 					if (pet != player.getPet()) {
@@ -270,8 +271,6 @@ public class NPCHandler {
 					player.getBank().openBank();
 				else if (npc.getId() == 528 || npc.getId() == 529)
 					ShopsHandler.openShop(player, 1);
-				else if (npc.getId() == 519)
-					ShopsHandler.openShop(player, 2);
 				else if (npc.getId() == 520 || npc.getId() == 521)
 					ShopsHandler.openShop(player, 4);
 				else if (npc.getId() == 538)
@@ -314,7 +313,10 @@ public class NPCHandler {
 					PlayerLook.openHairdresserSalon(player);
 				else if (npc.getId() == 541) //Zeke - Combat Shop
 					player.getDialogueManager().startDialogue("Zeke", npc.getId(), 0);
-			
+				else if (npc.getId() == 519) //bob - Skilling Shop
+					player.getDialogueManager().startDialogue("Bob", npc.getId(), 0);
+				
+				
 				else if (npc instanceof Pet) {
 					if (npc != player.getPet()) {
 						player.getPackets().sendGameMessage("This isn't your pet!");
