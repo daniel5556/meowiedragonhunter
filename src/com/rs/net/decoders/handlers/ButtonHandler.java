@@ -40,6 +40,7 @@ import com.rs.net.decoders.WorldPacketsDecoder;
 import com.rs.utils.ItemExamines;
 import com.rs.utils.Logger;
 import com.rs.utils.Utils;
+import com.rs.game.player.content.custom.PlayerPanel;
 
 public class ButtonHandler {
 
@@ -494,6 +495,8 @@ public class ButtonHandler {
 				player.setPrivateChatSetup(componentId - 48);
 			else if (componentId >= 72 && componentId <= 91)
 				player.setFriendChatSetup(componentId - 72);
+		} else if (interfaceId == 506) { //Custom interface
+			PlayerPanel.handleButtons(player, componentId);
 		} else if (interfaceId == 271) {
 			WorldTasksManager.schedule(new WorldTask() {
 				@Override

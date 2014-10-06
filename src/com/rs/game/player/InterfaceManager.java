@@ -93,6 +93,7 @@ public class InterfaceManager {
 	
 	public void sendFullScreenInterfaces() {
 		player.getPackets().sendWindowsPane(746, 0);
+		sendPlayerPanel();
 		sendTab(21, 752);
 		sendTab(22, 751);
 		sendTab(15, 745);
@@ -110,7 +111,7 @@ public class InterfaceManager {
 		sendEquipment();
 		sendPrayerBook();
 		sendMagicBook();
-		sendTab(120, 550); // friend list
+		sendTab(120, 550); //sendPlayerPanel();
 		sendTab(121, 1109); // 551 ignore now friendchat
 		sendTab(122, 1110); // 589 old clan chat now new clan chat
 		sendSettings();
@@ -122,6 +123,7 @@ public class InterfaceManager {
 	
 	public void sendFixedInterfaces() {
 		player.getPackets().sendWindowsPane(548, 0);
+		sendPlayerPanel();
 		sendTab(161, 752);
 		sendTab(37, 751);
 		sendTab(23, 745);
@@ -135,7 +137,7 @@ public class InterfaceManager {
 		sendPrayerBook();
 		sendEquipment();
 		sendInventory();
-		sendTab(174, 190);//quest
+		sendTab(174, 190);//quest 
 		sendTab(181, 1109);// 551 ignore now friendchat
 		sendTab(182, 1110);// 589 old clan chat now new clan chat
 		sendTab(180, 550);// friend list
@@ -392,6 +394,19 @@ public class InterfaceManager {
 			}
 			
 		});
+	}
+	
+	public void sendPlayerPanel() {
+		sendTab(resizableScreen ? 119 : 179, 1139);
+		player.getPackets().sendGlobalConfig(823, 1);
+		player.getPackets().sendIComponentText(506, 0, "<col=ffff00>Teleports");
+		player.getPackets().sendIComponentText(506, 2, "<col=0088ff>Loyalty Points:");
+		player.getPackets().sendIComponentText(506, 4, "<col=0088ff>Skilling");
+		player.getPackets().sendIComponentText(506, 6, "<col=0088ff>Bossing");
+		player.getPackets().sendIComponentText(506, 8, "<col=0088ff>Minigames");
+		player.getPackets().sendIComponentText(506, 10, "<col=0088ff>PvP");
+		player.getPackets().sendIComponentText(506, 12, "<col=0088ff>Skill Shops");
+		player.getPackets().sendIComponentText(506, 14, "<col=0088ff>Coming Soon...");
 	}
 
 	/*
