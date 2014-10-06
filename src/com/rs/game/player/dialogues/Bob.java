@@ -11,7 +11,7 @@ public class Bob extends Dialogue {
 	@Override
 	public void start() {
 		npcId = (Integer) parameters[0];
-		sendOptionsDialogue("What do you wish to buy?",	"Tools", "Farming & Herblore", "Misc. Skill Items", "Outfits");
+		sendOptionsDialogue("What do you wish to buy?",	"Tools", "Farming & Herblore", "Crafting Shop", "Misc. Skill Items", "Outfits");
 	}
 
 	@Override
