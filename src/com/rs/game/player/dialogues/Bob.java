@@ -11,7 +11,7 @@ public class Bob extends Dialogue {
 	@Override
 	public void start() {
 		npcId = (Integer) parameters[0];
-		sendOptionsDialogue("What do you wish to buy?",	"Tools", "Farming & Herblore", "Crafting", "Misc. Skill Items", "Outfits");
+		sendOptionsDialogue("What do you wish to buy?",	"Tools", "Farming & Herblore", "Misc. Skill Items", "Outfits");
 	}
 
 	@Override
@@ -31,10 +31,6 @@ public class Bob extends Dialogue {
 				break;
 			case OPTION_4:
 				ShopsHandler.openShop(player, 42);
-				end();
-				break;
-			case OPTION_5:
-				ShopsHandler.openShop(player, 43);
 				end();
 				break;			
 			default:
