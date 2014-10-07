@@ -198,7 +198,7 @@ public class NPC extends Entity implements Serializable {
 			setRandomWalk(false); 
 		}
 		//Spria - Slayer Master
-		if(id == 8462) {
+		if(id == 9085) {
 			setName("<col=CC0000><shad=IM88A>Slayer Master");
 			setRandomWalk(false); 
 		}
