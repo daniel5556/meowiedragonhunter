@@ -8,17 +8,15 @@ import com.rs.game.player.Skills;
 import com.rs.game.player.content.Magic;
 import com.rs.game.player.controlers.FightCaves;
 import com.rs.game.player.controlers.FightKiln;
-import com.rs.game.minigames.duel.DuelControler;
-import com.rs.game.player.controlers.fightpits.FightPitsLobby;
 
-public class Korasi extends Dialogue {
+public class TalentScout extends Dialogue {
 
 	private int npcId;
 
 	@Override
 	public void start() {
 		/*if (Settings.ECONOMY) {
-			player.getPackets().sendGameMessage("The Master of Minigame Teleports is in no mood to talk to you.");
+			player.getPackets().sendGameMessage("The Master of Skilling Teleports is in no mood to talk to you.");
 			end();
 			return;
 		}*/
@@ -54,7 +52,7 @@ public class Korasi extends Dialogue {
 		} else if (stage == 3) {
 			if (componentId == OPTION_1) {
 				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(4608, 5061, 0));
-				player.getControlerManager().startControler("FightPitsLobby");
+				player.getControlerManager().startControler("DuelControler");
 			} else if (componentId == OPTION_2){
 				Magic.sendNormalTeleportSpell(player, 0, 0, FightCaves.OUTSIDE);
 			}else if (componentId == OPTION_3){

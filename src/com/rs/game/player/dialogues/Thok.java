@@ -71,7 +71,7 @@ public class Thok extends Dialogue {
 			} else if (componentId == OPTION_2)
 				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(2900, 4449, 0));
 			else if (componentId == OPTION_3) {
-				stage = 4;
+				stage = 2;
 				sendOptionsDialogue("Where would you like to go?", "Bandos", "Armadyl", "Saradomin", "Zamorak", "More Options");
 			}
 		}
