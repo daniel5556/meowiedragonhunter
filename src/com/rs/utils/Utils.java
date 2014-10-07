@@ -355,10 +355,10 @@ public final class Utils {
 		return new String(ac, 12 - i, i);
 	}
 
-	public static final char[] VALID_CHARS = { '_', 'a', 'b', 'c', 'd', 'e',
-			'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
-			's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4',
-			'5', '6', '7', '8', '9' };
+	public static final char[] VALID_CHARS = { '_', ' ', 'a', 'A', 'b', 'B', 'c', 'C', 'd', 'D', 'e', 'E',
+		'f', 'F', 'g', 'G', 'h', 'H', 'i', 'I', 'j', 'J', 'k', 'K', 'l', 'L', 'm', 'M', 'n', 'N', 
+		'o', 'O', 'p', 'P', 'q', 'Q', 'r', 'R', 's', 'S', 't', 'T', 'u', 'U', 'v', 'V', 'w', 'W', 'x','X', 'y', 'Y', 'z', 'Z', 
+		'0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 	
 	public static boolean invalidAccountName(String name) {
 		return name.length() < 2 || name.length() > 12 || name.startsWith("_") || name.endsWith("_") || name.contains("__") || containsInvalidCharacter(name);
