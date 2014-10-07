@@ -32,37 +32,35 @@ public class TalentScout extends Dialogue {
 					IS_PLAYER, player.getIndex(), 9827);
 			stage = 1;
 		} else if (stage == 1) {
-			sendOptionsDialogue("Where would you like to go?", "Duel Arena",
-					"Clan Wars", "Castle Wars", "Dominion Tower", "More Options");
+			sendOptionsDialogue("Where would you like to go?", "RuneSpan",
+					"Mining Guild", "Living Rock Cavern", "Gnome Agility Course", "More Options");
 			stage = 2;
 		} else if (stage == 2) {
 			if (componentId == OPTION_1){
-				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(3365, 3275, 0));
-				player.getControlerManager().startControler("DuelControler");
+				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(3801, 3552, 0));
 			}else if (componentId == OPTION_2){
-				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(2993, 9679, 0));
+				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(3042, 9743, 0));
 			}else if (componentId == OPTION_3){
-				Magic.sendNormalTeleportSpell(player, 0, 0, CastleWars.LOBBY);
+				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(3654, 5115, 0));
 			}else if (componentId == OPTION_4){
-				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(3366, 3083, 0));
+				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(2478, 3438, 0));
 			}else if (componentId == OPTION_5) {
 				stage = 3;
-				sendOptionsDialogue("Where would you like to go?", "Fight Pits", "Fight Caves", "Fight Kiln", "Barrows", "More Options");
+				sendOptionsDialogue("Where would you like to go?", "Barbarian Agility Course", "...", "...", "...", "More Options");
 			}
 		} else if (stage == 3) {
 			if (componentId == OPTION_1) {
-				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(4608, 5061, 0));
-				player.getControlerManager().startControler("DuelControler");
+				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(2552, 3554, 0));
 			} else if (componentId == OPTION_2){
-				Magic.sendNormalTeleportSpell(player, 0, 0, FightCaves.OUTSIDE);
+			
 			}else if (componentId == OPTION_3){
-				Magic.sendNormalTeleportSpell(player, 0, 0, FightKiln.OUTSIDE);
+			
 			}else if (componentId == OPTION_4){
-				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(3565, 3289, 0));
+				
 			}else if (componentId == OPTION_5){
 				stage = 2;
-				sendOptionsDialogue("Where would you like to go?", "Duel Arena",
-					"Clan Wars", "Castle Wars", "Dominion Tower", "More Options");
+				sendOptionsDialogue("Where would you like to go?", "RuneSpan",
+					"Mining Guild", "Living Rock Cavern", "Gnome Agility Course", "More Options");
 			}
 		}
 	}
