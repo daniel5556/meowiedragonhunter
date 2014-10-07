@@ -11,7 +11,7 @@ public final class Settings {
 	 */
 	public static final String SERVER_NAME = "OurScape";
 	public static final int PORT_ID = 43594;
-	public static final String LASTEST_UPDATE = "RuneSpan is now available!";
+	public static final String LASTEST_UPDATE = "All skills work!";
 	public static final String CACHE_PATH = "data/cache/";
 	public static final int RECEIVE_DATA_LIMIT = 7500;
 	public static final int PACKET_SIZE_LIMIT = 7500;
