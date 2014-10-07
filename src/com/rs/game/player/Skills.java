@@ -356,7 +356,7 @@ public final class Skills implements Serializable {
 		if (skill == ATTACK || skill == DEFENCE || skill == STRENGTH || skill == RANGE || skill == MAGIC) {
 			exp *= 9*Settings.XP_RATE;
 		} 
-		else if (skill == HITPOINTS || SUMMONING || skill == HERBLORE) {
+		else if (skill == HITPOINTS || skill == SUMMONING || skill == HERBLORE) {
 			exp *= 3*Settings.XP_RATE;
 		}
 		else if (skill == PRAYER) {
