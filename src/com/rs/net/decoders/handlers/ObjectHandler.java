@@ -56,6 +56,7 @@ import com.rs.io.InputStream;
 import com.rs.utils.Logger;
 import com.rs.utils.PkRank;
 import com.rs.utils.Utils;
+import com.rs.game.player.controlers.Barrows;
 
 public final class ObjectHandler {
 
@@ -822,9 +823,13 @@ public final class ObjectHandler {
 					player.getDialogueManager().startDialogue("Marv", false);
 				else if (id == 67052)
 					Crucible.enterCrucibleEntrance(player);
+				//Barrows use spades on hill
+				else if (id == 66115 || id == 66116)
+					Barrows.digIntoGrave(player);
 				else if (id == 28716 || id == 67036) {
 					Summoning.sendInterface(player);
 				}
+				
 				else {
 					switch (objectDef.name.toLowerCase()) {
 					case "trapdoor":
