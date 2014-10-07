@@ -29,8 +29,12 @@ public class PlayerPanel {
 		}
 		else if (componentId == 10) {
 			SlayerTask task = player.getSlayerTask();
-			player.getPackets().sendGameMessage("You're currently assigned to kill "+ task.getName().toLowerCase()+ " only " + task.getAmount()+ " more to go.",true);
+			if (player.getSlayerTask() != null) {
+				player.getPackets().sendGameMessage("You're currently assigned to kill "+ task.getName().toLowerCase()+ " only " + task.getAmount()+ " more to go.",true);
+			} else {
+				player.getPackets().sendGameMessage("You're not currently hunting anything. Please visit a slayer master.",true);
 			return;
+			}
 		}
 		else if (componentId == 12) {
 			player.getPackets().sendGameMessage("You currently have "+ player.credits +" credits.");
