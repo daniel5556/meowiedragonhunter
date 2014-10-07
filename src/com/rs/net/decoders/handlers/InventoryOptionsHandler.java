@@ -65,8 +65,12 @@ public class InventoryOptionsHandler {
 			player.stopAll(false);
 		} else if (itemId >= 15086 && itemId <= 15100) {
 			Dicing.handleRoll(player, itemId, true); 
-			return;
-		} else {
+			return;		
+		} 
+		else if (itemId == 4155) {
+			player.getPackets().sendGameMessage("You're current assigned to kill "+ player.getSlayerTask().getName().toLowerCase()+ " only " + player.getSlayerTask().getAmount()+ " more to go.");
+		}
+		else {
 			if (player.isEquipDisabled())
 				return;
 			long passedTime = Utils.currentTimeMillis()
@@ -172,6 +176,9 @@ public class InventoryOptionsHandler {
 			player.getDialogueManager().startDialogue("EnchantedGemDialouge");
 		else if (itemId >= 23653 && itemId <= 23658)
 			FightKiln.useCrystal(player, itemId);
+		else if (itemId == 4155) {
+			player.getDialogueManager().startDialogue("SlayerMaster", player.getSlayerMaster().getMaster());
+		}
 		else if (itemId == 1856) {// Information Book
 			player.getInterfaceManager().sendInterface(275);
 			player.getPackets()

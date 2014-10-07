@@ -75,7 +75,7 @@ public class Slayer {
 				"Mithril dragons", "Nechryael", "Spiritual mages", "Suqahs",
 				"Greater demons", "Fire giant", "Hellhounds"),
 
-		KURADAL(9084, "", 110, 75, new int[] { 190, 270 }, "Aberrant spectres",
+		KURADAL(9085, "", 110, 75, new int[] { 190, 270 }, "Aberrant spectres",
 				"Abbyssal demons", "Aquanties", "Black demons",
 				"Black Dragons", "Bloodvelds", "Blue Dragons", "Dagannoth",
 				"Dark beasts", "Desert strykewyrms", "Dust devils",
