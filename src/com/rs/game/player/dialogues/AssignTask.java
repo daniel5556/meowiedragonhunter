@@ -16,17 +16,15 @@ public class AssignTask extends Dialogue {
 		SlayerTask task = player.getSlayerTask();
 			if (player.getSlayerTask() != null) {
 				sendNPCDialogue(npcId, 9827, "You're currently assigned to kill "+ task.getName().toLowerCase()+ " only " + task.getAmount()+ " more to go.");
-				end();
 			} else {
 				Slayer.submitRandomTask(player);
 				sendNPCDialogue(npcId, 9827, "Your new task is to kill "+ player.getSlayerTask().getName().toLowerCase() + ".");
-				end();
 			}
 	}
 
 	@Override
 	public void run(int interfaceId, int componentId) {
-		
+		end();
 	}	
 
 	@Override
