@@ -11,8 +11,6 @@ import com.rs.game.player.controlers.FightKiln;
 
 public class Raptor extends Dialogue {
 
-public class Raptor extends Dialogue {
-
 	int npcId;
 
 	@Override
@@ -67,19 +65,19 @@ public class Raptor extends Dialogue {
 			switch (componentId) {
 			case OPTION_1:
 				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(2864, 5354, 2));
-				player.getControllerManager().startController("GodWars");
+				player.getControlerManager().startControler("GodWars");
 				break;
 			case OPTION_2:
 				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(2839, 5296, 2));
-				player.getControllerManager().startController("GodWars");
+				player.getControlerManager().startControler("GodWars");
 				break;
 			case OPTION_3:
 				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(2907, 5265, 0));
-				player.getControllerManager().startController("GodWars");
+				player.getControlerManager().startControler("GodWars");
 				break;
 			case OPTION_4:
 				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(2925, 5331, 2));
-				player.getControllerManager().startController("GodWars");
+				player.getControlerManager().startControler("GodWars");
 				break;
 			case OPTION_5:
 				sendOptionsDialogue("Where would you like to go?", "Nex", "Corporeal Beast", "Tormented Demons", "King Black Dragon", "More Options");
@@ -111,7 +109,6 @@ public class Raptor extends Dialogue {
 			switch (componentId) {
 			case OPTION_1:
 				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(3508, 9493, 0));
-				player.getControllerManager().startController("DuelControler");
 				break;
 			case OPTION_2:
 				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(2900, 4449, 0));
