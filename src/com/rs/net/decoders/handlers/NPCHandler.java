@@ -319,8 +319,8 @@ public class NPCHandler {
 					player.getDialogueManager().startDialogue("Zeke", npc.getId(), 0);
 				else if (npc.getId() == 519) //bob - Skilling Shop
 					player.getDialogueManager().startDialogue("Bob", npc.getId(), 0);
-				
-				
+				else if (npc.getId() == 9085) //Kuradal - Get Task
+					player.getDialogueManager().startDialogue("AssignTask", npc.getId(), 0);
 				else if (npc instanceof Pet) {
 					if (npc != player.getPet()) {
 						player.getPackets().sendGameMessage("This isn't your pet!");
@@ -378,10 +378,10 @@ public class NPCHandler {
 				else if (npc.getId() == 5532) {
 					npc.setNextForceTalk(new ForceTalk("Senventior Disthinte Molesko!"));
 					player.getControlerManager().startControler("SorceressGarden");
-					
-				} else
-					player.getPackets().sendGameMessage(
-							"Nothing interesting happens.");
+				}else if (npc.getId() == 9085) //Kuradal - Open Slayer Shop
+					ShopsHandler.openShop(player, 29);
+				else
+					player.getPackets().sendGameMessage("Nothing interesting happens.");
 			}
 		}, npc.getSize()));
 		if (Settings.DEBUG)

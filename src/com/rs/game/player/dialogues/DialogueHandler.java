@@ -182,6 +182,7 @@ public final class DialogueHandler {
 			handledDialogues.put("Bob", (Class<Dialogue>) Class.forName(Bob.class.getCanonicalName()));
 			handledDialogues.put("PrayerD", (Class<Dialogue>) Class.forName(PrayerD.class.getCanonicalName()));
 			handledDialogues.put("SlayerMaster", (Class<Dialogue>) Class.forName(SlayerMaster.class.getCanonicalName()));
+			handledDialogues.put("AssignTask", (Class<Dialogue>) Class.forName(AssignTask.class.getCanonicalName()));
 		} catch (Throwable e) {
 			Logger.handle(e);
 		}
