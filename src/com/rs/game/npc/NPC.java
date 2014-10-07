@@ -180,6 +180,11 @@ public class NPC extends Entity implements Serializable {
 			setName("<col=FFCC00><shad=IM88A>Monster Teleports");
 			setRandomWalk(false); 
 		}
+		//Talent Scout - Skilling Teleports
+		if (id == 14365) {
+			setName("<col=FFCC00><shad=IM88A>Skilling Teleports");
+			setRandomWalk(false); 
+		}
 		//makeover mage
 		if(id == 2676) {
 			setName("<col=FF000><shad=IM88A>Character Editor");
