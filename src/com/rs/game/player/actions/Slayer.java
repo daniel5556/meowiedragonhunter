@@ -304,7 +304,7 @@ public class Slayer {
 
 	public static void submitRandomTask(Player player) {
 		SlayerTask task = null;
-		Master master = player.getSlayerMaster();
+		Master master = getRecommendedMasterForLevel(player);
 		if (master == null) {
 			player.setSlayerMaster(Master.SPRIA);
 			master = player.getSlayerMaster();
@@ -325,5 +325,47 @@ public class Slayer {
 			task = null;
 			player.setSlayerTask(task);
 		}
+	}
+	
+	public static Master getRecommendedMasterForLevel(Player player) {
+		int slaylvl = player.getSkills().getLevel(Skills.SLAYER);
+		int cmb = player.getSkills().getCombatLevelWithSummoning();
+		if (cmb < 20) {
+			return Master.SPRIA;
+		}
+		if (cmb < 40) {
+			return Master.MAZCHNA;
+		}
+		if (cmb < 70) {
+			return Master.VANNAKA;
+		}
+		if (cmb < 85) {
+			return Master.CHAELDAR;
+		}
+		if (cmb < 100 ) {
+			if (slaylvl < 35) {
+				return Master.CHAELDAR;
+			}
+			return Master.SUMONA;
+		}
+		if (cmb < 110) {
+			if (slaylvl < 35) {
+				return Master.CHAELDAR;
+			}
+			if (slaylvl < 50) {
+				return Master.SUMONA;
+			}
+			return Master.LAPALOK;
+		}
+		if (slaylvl < 35) {
+			return Master.CHAELDAR;
+		}
+		if (slaylvl < 50) {
+			return Master.SUMONA;
+		}
+		if (slaylvl < 75) {
+			return Master.LAPALOK;
+		}
+		return Master.KURADAL;
 	}
 }
