@@ -161,9 +161,10 @@ public class NPC extends Entity implements Serializable {
 		if (id == 6537)
 			setName("<col=FF000><shad=IM88A>Stat Editor");
 		//MrEx - Pk Teleports
-		if (id == 3709)
+		if (id == 3709) {
 			setName("<col=FFCC00><shad=IM88A>Pking Teleports");
 			setRandomWalk(false); 
+		}
 		//Thok - Boss Teleports
 		if (id == 13280) {
 			setName("<col=FFCC00><shad=IM88A>Boss Teleports");
