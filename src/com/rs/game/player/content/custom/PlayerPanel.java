@@ -33,11 +33,11 @@ public class PlayerPanel {
 			return;
 		}
 		else if (componentId == 12) {
-			player.getPackets().sendGameMessage("You currently have "+ player.credits +" credits");
+			player.getPackets().sendGameMessage("You currently have "+ player.credits +" credits.");
 			return;
 		}
 		else if (componentId == 14) {
-			player.getPackets().sendGameMessage("Coming soon...",true);
+			player.getPackets().sendGameMessage("You currently have "+ player.pkpoints +" Pk Points.");
 			return;
 		}
 	}
