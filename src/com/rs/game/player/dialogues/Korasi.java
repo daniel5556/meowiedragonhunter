@@ -38,6 +38,7 @@ public class Korasi extends Dialogue {
 		} else if (stage == 2) {
 			if (componentId == OPTION_1){
 				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(3365, 3275, 0));
+				player.getControlerManager().startControler("DuelControler");
 			}else if (componentId == OPTION_2){
 				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(2993, 9679, 0));
 			}else if (componentId == OPTION_3){
