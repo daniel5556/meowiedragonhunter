@@ -191,11 +191,15 @@ public class NPC extends Entity implements Serializable {
 		if(id == 541) {
 			setName("<col=FF66FF><shad=IM88A>Combat Shop");
 			setRandomWalk(false); 
-		}
-		
+		}		
 		//Bob - Skilling Shop
 		if(id == 519) {
 			setName("<col=FF66FF><shad=IM88A>Skilling Shop");
+			setRandomWalk(false); 
+		}
+		//Spria - Slayer Master
+		if(id == 8462) {
+			setName("<col=CC0000><shad=IM88A>Slayer Master");
 			setRandomWalk(false); 
 		}
 		if (!combat.process()) { // if not under combat		
