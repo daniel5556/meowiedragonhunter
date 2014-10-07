@@ -144,6 +144,9 @@ public final class DialogueHandler {
 			Class<Dialogue> value47 = (Class<Dialogue>) Class
 					.forName(ChaosAltar.class.getCanonicalName());
 			handledDialogues.put("ChaosAltar", value47);
+			Class<Dialogue> value48 = (Class<Dialogue>) Class
+					.forName(Raptor.class.getCanonicalName());
+			handledDialogues.put("TalentScout", value48);
 			
 			handledDialogues.put("clan_wars_view", (Class<Dialogue>) Class.forName(ClanWarsViewing.class.getCanonicalName()));
 			handledDialogues.put("DiceBag", (Class<Dialogue>) Class.forName(DiceBag.class.getCanonicalName()));
