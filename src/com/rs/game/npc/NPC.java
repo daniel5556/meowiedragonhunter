@@ -163,7 +163,6 @@ public class NPC extends Entity implements Serializable {
 		//MrEx - Pk Teleports
 		if (id == 3709)
 			setName("<col=FFCC00><shad=IM88A>Pking Teleports");
-			setRandomWalk(false); 
 		//Thok - Boss Teleports
 		if (id == 13280) {
 			setName("<col=FFCC00><shad=IM88A>Boss Teleports");
@@ -179,16 +178,15 @@ public class NPC extends Entity implements Serializable {
 			setName("<col=FFCC00><shad=IM88A>Monster Teleports");
 			setRandomWalk(false); 
 		}
-		//Talent Scout - Skilling Teleports
-		if(id == 14365) {
-			setName("<col=FFCC00><shad=IM88A>Skilling Teleports");
-			setRandomWalk(false);
-		}
 		//makeover mage
 		if(id == 2676) {
 			setName("<col=FF000><shad=IM88A>Character Editor");
 			setRandomWalk(false); 
 		}
+		//MrEx
+		if(id == 2676)
+			setRandomWalk(false); 
+
 		//Zeke - Combat Shop
 		if(id == 541) {
 			setName("<col=FF66FF><shad=IM88A>Combat Shop");

@@ -180,8 +180,6 @@ public class NPCHandler {
 					player.getDialogueManager().startDialogue("Zeke", npc.getId(), 0);
 				else if (npc.getId() == 13959) 
 					player.getDialogueManager().startDialogue("Raptor", npc.getId());
-				else if (npc.getId() == 14365) 
-					player.getDialogueManager().startDialogue("TalentScout", npc.getId());
 				else if (npc.getId() == 519) 
 					player.getDialogueManager().startDialogue("Bob", npc.getId(), 0);
 				else if (npc instanceof Pet) {
