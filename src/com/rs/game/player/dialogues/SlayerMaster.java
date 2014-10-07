@@ -50,7 +50,7 @@ public class SlayerMaster extends Dialogue {
 		else if (componentId == OPTION_2) {
 			sendNPCDialogue(npcId, 9827, "I have multiple items for sale.");					
 			ShopsHandler.openShop(player, 29);
-			stage = -1;
+			end();
 		} 
 		else if (componentId == OPTION_3) {
 			sendNPCDialogue(npcId, 9827, "I currently dont have any tips for you now.");
