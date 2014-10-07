@@ -16,7 +16,7 @@ public class TalentScout extends Dialogue {
 	@Override
 	public void start() {
 		/*if (Settings.ECONOMY) {
-			player.getPackets().sendGameMessage("The Master of Minigame Teleports is in no mood to talk to you.");
+			player.getPackets().sendGameMessage("The Master of Skilling Teleports is in no mood to talk to you.");
 			end();
 			return;
 		}*/
