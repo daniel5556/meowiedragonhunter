@@ -3,6 +3,9 @@ package com.rs.game.player.content.custom;
 import com.rs.game.player.Player;
 import com.rs.game.player.content.Magic;
 import com.rs.game.WorldTile;
+import com.rs.game.player.actions.Slayer;
+import com.rs.game.player.actions.Slayer.Master;
+import com.rs.game.player.actions.Slayer.SlayerTask;
 
 
 public class PlayerPanel {
@@ -25,7 +28,8 @@ public class PlayerPanel {
 			return;
 		}
 		else if (componentId == 10) {
-			player.getPackets().sendGameMessage("Coming soon...",true);
+			SlayerTask task = player.getSlayerTask();
+			player.getPackets().sendGameMessage("You're currently assigned to kill "+ task.getName().toLowerCase()+ " only " + task.getAmount()+ " more to go.",true);
 			return;
 		}
 		else if (componentId == 12) {

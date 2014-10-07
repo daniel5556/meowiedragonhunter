@@ -406,7 +406,7 @@ public class InterfaceManager {
 		player.getPackets().sendIComponentText(506, 4, "<col=0088ff>Coming Soon...");
 		player.getPackets().sendIComponentText(506, 6, "<col=0088ff>Coming Soon...");
 		player.getPackets().sendIComponentText(506, 8, "<col=0088ff>Coming Soon...");
-		player.getPackets().sendIComponentText(506, 10, "<col=0088ff>Coming Soon...");
+		player.getPackets().sendIComponentText(506, 10, "<col=0088ff>Slayer Task");
 		player.getPackets().sendIComponentText(506, 12, "<col=0088ff>Credits: " + player.credits);
 		player.getPackets().sendIComponentText(506, 14, "<col=0088ff>Pk Points: " + player.pkpoints);
 	}
