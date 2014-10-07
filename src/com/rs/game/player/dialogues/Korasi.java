@@ -8,6 +8,8 @@ import com.rs.game.player.Skills;
 import com.rs.game.player.content.Magic;
 import com.rs.game.player.controlers.FightCaves;
 import com.rs.game.player.controlers.FightKiln;
+import com.rs.game.minigames.duel.DuelControler;
+import com.rs.game.player.controlers.fightpits.FightPitsLobby;
 
 public class Korasi extends Dialogue {
 
@@ -52,7 +54,7 @@ public class Korasi extends Dialogue {
 		} else if (stage == 3) {
 			if (componentId == OPTION_1) {
 				Magic.sendNormalTeleportSpell(player, 0, 0, new WorldTile(4608, 5061, 0));
-				player.getControlerManager().startControler("DuelControler");
+				player.getControlerManager().startControler("FightPitsLobby");
 			} else if (componentId == OPTION_2){
 				Magic.sendNormalTeleportSpell(player, 0, 0, FightCaves.OUTSIDE);
 			}else if (componentId == OPTION_3){
