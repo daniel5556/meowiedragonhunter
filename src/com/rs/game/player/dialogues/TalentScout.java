@@ -21,7 +21,7 @@ public class TalentScout extends Dialogue {
 			return;
 		}*/
 		npcId = (Integer) parameters[0];
-		sendEntityDialogue(SEND_2_TEXT_CHAT, new String[] { NPCDefinitions.getNPCDefinitions(npcId).name, "Hello, I can teleport you to any minigame, would you like to go somewhere?" }, IS_NPC, npcId, 9827);
+		sendEntityDialogue(SEND_2_TEXT_CHAT, new String[] { NPCDefinitions.getNPCDefinitions(npcId).name, "Hello, I can teleport you to any Skilling Location, would you like to go somewhere?" }, IS_NPC, npcId, 9827);
 	}
 
 	@Override
