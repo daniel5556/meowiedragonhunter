@@ -77,16 +77,14 @@ public class Player extends Entity {
 
 	private static final long serialVersionUID = 2011932556974180375L;
 	
-	//loyalty
-	private int Loyaltypoints;
-	
 	//starter kit
 	public boolean starter = false;
 
 	//points
 	public int credits = 0;
 	public int pkpoints = 0;
-
+	public int Loyaltypoints;
+	
 	//bone dupe fix
 	private boolean burying;
 	

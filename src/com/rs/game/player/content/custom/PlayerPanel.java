@@ -12,22 +12,14 @@ public class PlayerPanel {
 
 	public static void handleButtons(Player player, int componentId) {
 		if (componentId == 2) {
-			player.getPackets().sendGameMessage("Coming soon...",true);
+			player.getPackets().sendGameMessage("Ability to change password coming soon...",true);
 			return;
 		}
 		else if (componentId == 4) {
-			player.getPackets().sendGameMessage("Coming soon...",true);
+			player.getPackets().sendGameMessage("Titles coming soon!",true);
 			return;
 		}
 		else if (componentId == 6) {
-			player.getPackets().sendGameMessage("Coming soon...",true);
-			return;
-		}
-		else if (componentId == 8) {
-			player.getPackets().sendGameMessage("Coming soon...",true);
-			return;
-		}
-		else if (componentId == 10) {
 			SlayerTask task = player.getSlayerTask();
 			if (player.getSlayerTask() != null) {
 				player.getPackets().sendGameMessage("You're currently assigned to kill "+ task.getName().toLowerCase()+ " only " + task.getAmount()+ " more to go.",true);
@@ -36,8 +28,16 @@ public class PlayerPanel {
 			return;
 			}
 		}
+		else if (componentId == 8) {
+			player.getPackets().sendGameMessage("Coming soon...",true);
+			return;
+		}
+		else if (componentId == 10) {
+			player.getPackets().sendGameMessage("You currently have "+ player.Loyaltypoints +" Loyalty Points.");
+			return;
+		}
 		else if (componentId == 12) {
-			player.getPackets().sendGameMessage("You currently have "+ player.credits +" credits.");
+			player.getPackets().sendGameMessage("You currently have "+ player.credits +" Credits.");
 			return;
 		}
 		else if (componentId == 14) {
