@@ -354,10 +354,10 @@ public final class Skills implements Serializable {
 		if (player.getAuraManager().usingWisdom())
 			exp *= 1.025;
 		if (skill == ATTACK || skill == DEFENCE || skill == STRENGTH || skill == RANGE || skill == MAGIC) {
-			exp *= 9*Settings.XP_RATE;
+			exp *= 19*Settings.XP_RATE;
 		} 
 		else if (skill == HITPOINTS || skill == SUMMONING || skill == HERBLORE) {
-			exp *= 3*Settings.XP_RATE;
+			exp *= 6*Settings.XP_RATE;
 		}
 		else if (skill == PRAYER) {
 			exp *= .75*Settings.XP_RATE;
