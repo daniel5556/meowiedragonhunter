@@ -14,12 +14,12 @@ public class LoyaltyManager {
 	
 	public void startTimer() {
 	CoresManager.fastExecutor.schedule(new TimerTask() {
-			int timer = 1800;
+			int timer = 5;
 			@Override
 			public void run() {
 				if (timer == 1) {
 					player.setLoyaltyPoints(player.getLoyaltyPoints() + 250);
-					timer = 1800;
+					timer = 5;
 					player.getPackets().sendGameMessage("<col=008000>You have recieved 250 loyalty points for playing for 30 minutes!");
 					player.getPackets().sendGameMessage("<col=008000>You now have " + player.getLoyaltyPoints() + " Loyalty Points!");
 				}
