@@ -107,8 +107,7 @@ public class Player extends Entity {
 	private transient DuelRules lastDuelRules;
 	private transient IsaacKeyPair isaacKeyPair;
 	private transient Pet pet;
-	private transient LoyaltyManager loyaltyManager;
-	
+
 	// used for packets logic
 	private transient ConcurrentLinkedQueue<LogicPacket> logicPackets;
 
@@ -299,8 +298,7 @@ public class Player extends Entity {
 		ownedObjectsManagerKeys = new LinkedList<String>();
 		passwordList = new ArrayList<String>();
 		ipList = new ArrayList<String>();
-		creationDate = Utils.currentTimeMillis();
-		loyaltyManager = new LoyaltyManager(this);		
+		creationDate = Utils.currentTimeMillis();				
 	}
 
 	public void init(Session session, String username, int displayMode,
@@ -690,10 +688,7 @@ public class Player extends Entity {
 		getPackets().sendGameMessage("Welcome to " + Settings.SERVER_NAME + ".");
 		getPackets().sendGameMessage(Settings.LASTEST_UPDATE);
 		getPackets().sendGameMessage("You are playing with "+(isOldItemsLook() ? "old" : "new") + " item looks. Type ::switchitemslook if you wish to switch.");
-		
-		//start loyalty timer
-		getLoyaltyManager().startTimer();
-		
+
 		//temporary for next 2days
 		donatorTill = 0;
 		extremeDonatorTill = 0;
@@ -2135,11 +2130,6 @@ public class Player extends Entity {
 		getPackets().sendPlayerUnderNPCPriority(canPvp);
 	}
 
-	//LoyaltyManager
-	public LoyaltyManager getLoyaltyManager() {
-		return loyaltyManager;
-	}
-	
 	public Prayer getPrayer() {
 		return prayer;
 	}
@@ -3194,12 +3184,4 @@ public class Player extends Entity {
 	public FarmingSystem getFarmingSystem() {
 		return farmingSystem;
 	}
-
-	public int getLoyaltyPoints() {
-		return Loyaltypoints;
-    }
-
-    public void setLoyaltyPoints(int Loyaltypoints) {
-		this.Loyaltypoints = Loyaltypoints;
-    }
 }
