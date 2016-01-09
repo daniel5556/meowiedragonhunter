@@ -160,7 +160,7 @@ public final class Launcher {
 				}
 
 			}
-		}, 15, 15, TimeUnit.MINUTES);
+		}, 5, 5, TimeUnit.MINUTES);
 	}
 
 	public static void saveFiles() {
