@@ -215,7 +215,7 @@ public final class Launcher {
 		closeServices();
 		System.gc();
 		try {
-			Runtime.getRuntime().exec("java -Xmx1024m -cp bin;/data/libs/netty-3.2.7.Final.jar;/data/libs/FileStore.jar Launcher false false true true");
+			Runtime.getRuntime().exec("java -Xmx1024m -cp bin:/data/libs/netty-3.2.7.Final.jar:/data/libs/FileStore.jar Launcher false false true false false");
 			System.exit(0);
 		} catch (Throwable e) {
 			Logger.handle(e);
